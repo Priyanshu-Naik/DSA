@@ -7,7 +7,7 @@ public:
             if(sumsIndex.find(complement) != sumsIndex.end()){
                 return {sumsIndex[complement], i};
             }
-            sumsIndex[nums[i]] = i;
+            sumsIndex[nums[i]] = i;//Store the number with its index
         }
         return {};
     }
