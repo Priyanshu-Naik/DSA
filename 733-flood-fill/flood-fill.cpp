@@ -7,7 +7,7 @@ public:
         if(r < 0 || r >= n || c < 0 || c >= m || image[r][c] != oldColor){
             return;
         }
-
+        // Color this pixel
         image[r][c] = newColor;
 
         dfs(image, r+1, c, newColor, oldColor);
