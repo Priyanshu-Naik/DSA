@@ -1,26 +1,23 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char, int> freq;
-        //this stores the chars and its freq in the map
-        for(char c : s){
+         unordered_map<char, int> freq;
+        for (char c : s) {
             freq[c]++;
         }
-        //store the unique chars in the vector
-        vector<char> chars;
-        for(auto it : freq){
-            chars.push_back(it.first);
-        }
-        //now sort the chars acc to the frequency
-        sort(chars.begin(), chars.end(), [&](char a, char b){
-            if(freq[a] != freq[b]) return freq[a] > freq[b];
-            return a < b;
+
+        // move into vector for sorting
+        vector<pair<char, int>> vec(freq.begin(), freq.end());
+
+        sort(vec.begin(), vec.end(), [](auto &a, auto &b) {
+            return a.second > b.second; // sort by frequency descending
         });
-        // Build result string by repeating characters
-        string result = "";
-        for (char c : chars) {
-            result += string(freq[c], c);  // repeat char `freq[c]` times
+
+        string result;
+        for (auto &p : vec) {
+            result.append(p.second, p.first);  // repeat char freq times
         }
-        return result;   
+
+        return result;
     }
 };
